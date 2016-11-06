@@ -1,0 +1,34 @@
+- require('./table-list.less');
+
+.table-list
+    .container
+        table.list
+            tr
+                td.list__item(ng-repeat="table in ctrl.tables track by table.id")
+                    .table
+                        h3.table__name {{ table.name }}
+                        .table__participants {{ table.participants }}
+                            span.table__participants__person(ng-repeat="person in table.displayedParticipants")
+                                | X
+                        .table__actions
+                            button.btn.btn-info.table__actions__update(ng-click="ctrl.update(table)") Update
+                            button.btn.btn-danger.table__actions__remove(ng-click="ctrl.remove(table)") Remove
+
+    hr
+
+    .table-edit-form
+        button.btn.btn-success.table-edit-form__button(ng-show="!ctrl.isFormShowed" ng-click="ctrl.showForm()") Create new table
+
+        .row.table-edit-form__row(ng-show="ctrl.isFormShowed")
+            .col-md-12
+                strong(ng-show="ctrl.form.id") Update table # {{ ctrl.form.id }}
+                strong(ng-show="!ctrl.form.id") Create new table
+            p.col-md-12
+                input(type="hidden" ng-model="ctrl.form.id" placeholder="Table ID")
+            p.col-md-12
+                input(type="text" ng-model="ctrl.form.name" placeholder="Table Name")
+            p.col-md-12
+                input(type="text" ng-model="ctrl.form.participants" placeholder="Participants number")
+            p.col-md-12
+                button.btn.btn-warning(ng-click="ctrl.cancel()") Cancel
+                button.btn.btn-info(ng-click="ctrl.submit()") Submit!
