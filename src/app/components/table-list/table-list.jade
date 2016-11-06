@@ -1,15 +1,19 @@
 - require('./table-list.less');
 
 .table-list
+    p At this moment available <strong>{{ ctrl.tables.length }}</strong> table(s)
+
     .container
         table.list
             tr
                 td.list__item(ng-repeat="table in ctrl.tables track by table.id")
                     .table
-                        h3.table__name {{ table.name }}
-                        .table__participants {{ table.participants }}
-                            span.table__participants__person(ng-repeat="person in table.displayedParticipants")
-                                | X
+                        h4.table__name {{ table.name }}
+                        .table__participants
+                            .row
+                                span.col-md-2(ng-repeat="person in table.displayedParticipants")
+                                    .table__participants__person
+                                        | (^^,)
                         .table__actions
                             button.btn.btn-info.table__actions__update(ng-click="ctrl.update(table)") Update
                             button.btn.btn-danger.table__actions__remove(ng-click="ctrl.remove(table)") Remove

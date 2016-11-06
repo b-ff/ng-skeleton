@@ -10,6 +10,8 @@ import app from '../app';
 
     class wsService {
         constructor ($rootScope) {
+            this.callbacks = {};
+
             socket = new WebSocket('wss://js-assignment.evolutiongaming.com/ws_api');
 
             socket.onopen = () => {
@@ -19,14 +21,22 @@ import app from '../app';
                 $rootScope.$broadcast('socketOpen');
             };
 
-            socket.onmessage = (data) => {
-                if (data.$type && this.callbacks[data.$type]) {
-                    angular.forEach(this.callbacks[data.$type], (callback) => {
-                        callback(data);
-                    });
-                }
+            socket.onmessage = (message) => {
+                const data = JSON.parse(message.data);
 
-                console.log('Received a message from socket: ', data);
+                console.log('wsService: Received a message from socket: ', data);
+
+                if (data.$type) {
+                    if (this.callbacks[data.$type]) {
+                        angular.forEach(this.callbacks[data.$type], (callback) => {
+                            callback(data);
+                        });
+
+                        console.log(`wsService: Called ${this.callbacks[data.$type].length} callback(s)`);
+                    } else {
+                        console.log(`wsService: No callbacks for "${data.$type}" message type`);
+                    }
+                }
             };
 
             socket.onclose = this.onclose;
@@ -53,6 +63,9 @@ import app from '../app';
             this.callbacks[messageApiType].push(callback);
         }
 
+        onTableList(callback) {
+            this.subscribeOnMessage('table_list', callback);
+        }
         onTableAdded(callback) {
             this.subscribeOnMessage('table_added', callback);
         }
