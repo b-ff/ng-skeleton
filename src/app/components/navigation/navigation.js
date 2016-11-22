@@ -2,15 +2,7 @@ import app from '../../app';
 
 class navComponentCtrl {
     constructor($state) {
-        this.state = $state;
-    }
-
-    goToTables() {
-        this.state.go('tables');
-    }
-
-    goToAuth() {
-        this.state.go('auth');
+        this.availableStates = $state.get().filter((item) => !item.abstract && !item.noNavigationLink);
     }
 }
 

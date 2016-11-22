@@ -2,10 +2,8 @@ nav.navbar.navbar-default
     .container-fluid
         .navbar-header
             .navbar-brand
-                | Evolution Gaming Test App
+                | ngSkeleton
 
-        //ul.nav.navbar-nav
-        //    li
-        //        a(href="" ng-click="ctrl.goToAuth()") Authorize
-        //    li
-        //        a(href="" ng-click="ctrl.goToTables()") Tables
+        ul.nav.navbar-nav
+            li(ng-repeat="state in ctrl.availableStates track by state.name")
+                a(ui-sref="{{ state.name }}") {{ state.title }}

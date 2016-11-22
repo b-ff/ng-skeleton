@@ -10,21 +10,26 @@ import app from './app';
 
 const config = ($stateProvider, $urlRouterProvider, $locationProvider) => {
 
-    // $locationProvider.html5Mode(true);
+    $locationProvider.html5Mode(true);
 
-    $urlRouterProvider.otherwise('/tables');
+    $urlRouterProvider.otherwise('/index');
 
     $stateProvider
-        .state('auth', {
-            url: '/auth',
-            template: require('../public/views/auth.jade')()
+        .state('index', {
+            title: 'Index',
+            url: '/index',
+            template: require('../public/views/index.jade')()
         })
-        .state('tables', {
-            url: '/tables',
-            template: require('../public/views/tables.jade')()
+        .state('credits', {
+            title: 'Credits',
+            url: '/credits',
+            template: require('../public/views/credits.jade')()
         });
 };
 
 app.config([
-    '$stateProvider', '$urlRouterProvider',
-    '$locationProvider', config]);
+    '$stateProvider',
+    '$urlRouterProvider',
+    '$locationProvider',
+    config
+]);

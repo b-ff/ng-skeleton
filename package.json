@@ -1,7 +1,7 @@
 {
-  "name": "eg_test",
+  "name": "ng-skeleton",
   "version": "1.0.0",
-  "description": "Test assignment for Evolution Gaming",
+  "description": "Skeleton for your Angular 1.5 project",
   "scripts": {
     "build": "rimraf dist && webpack --bail --progress --profile",
     "server": "webpack-dev-server --history-api-fallback --inline --hot --progress --colors",
@@ -12,19 +12,20 @@
   },
   "dependencies": {
     "angular": "^1.5.8",
-    "angular-ui-router": "^0.3.1",
-    "babel-runtime": "^6.18.0",
-    "ng-dialog": "^0.6.4",
-    "ui-select": "^0.19.4"
+    "angular-ui-bootstrap": "^2.2.0",
+    "angular-ui-router": "^0.3.1"
   },
   "devDependencies": {
     "angular-mocks": "^1.5.0",
     "autoprefixer": "^6.0.3",
+    "babel-cli": "^6.18.0",
     "babel-core": "^6.17.0",
     "babel-loader": "^6.2.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.18.0",
     "babel-plugin-transform-runtime": "^6.15.0",
     "babel-preset-es2015": "^6.1.18",
     "babel-preset-stage-3": "^6.17.0",
+    "babel-runtime": "^6.18.0",
     "copy-webpack-plugin": "^3.0.1",
     "css-loader": "^0.23.0",
     "eslint": "^3.6.1",

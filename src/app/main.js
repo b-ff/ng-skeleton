@@ -9,9 +9,11 @@ import './app';
 // App configuration
 import './config';
 
+// Providers
+
 // Services
-import './services/wsService';
+
+// Directives
 
 // Components
 import './components/navigation/navigation';
-import './components/table-list/table-list';
