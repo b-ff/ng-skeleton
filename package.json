@@ -4,7 +4,7 @@
   "description": "Skeleton for your Angular 1.5 project",
   "scripts": {
     "build": "rimraf dist && webpack --bail --progress --profile",
-    "server": "webpack-dev-server --history-api-fallback --inline --hot --progress --colors",
+    "server": "webpack-dev-server --history-api-fallback --inline --hot --progress --colors --watch-poll",
     "test": "karma start",
     "test-watch": "karma start --auto-watch --no-single-run",
     "start": "npm run server",
